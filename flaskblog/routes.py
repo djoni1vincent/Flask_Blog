@@ -12,25 +12,11 @@ from flaskblog import app, bcrypt, db
 from .forms import LoginForm, PostForm, RegistrationForm, UpdateAccountForm
 from .models import Post, User
 
-posts = [
-    {
-        'author': 'Denys',
-        'title': 'Pizdabol',
-        'content': 'Pizdabol is a big lier.',
-        'date_posted': '23-05-2026',
-    },
-    {
-        'author': 'Pizdabol',
-        'title': 'Denys is a liar',
-        'content': 'Denys is a liar, Im not a lier.',
-        'date_posted': '24-05-2026',
-    },
-]
-
 
 @app.route('/')
 @app.route('/home')
 def home():
+    posts = Post.query.all()
     return render_template('home.html', posts=posts, title='Home')
 
 
@@ -149,7 +135,14 @@ def account():
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
+        post = Post(
+            title=form.title.data,
+            content=form.content.data,
+            author=current_user,
+        )
+        db.session.add(post)
+        db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('home'))
-    
+
     return render_template('create_post.html', title='New Post', form=form)

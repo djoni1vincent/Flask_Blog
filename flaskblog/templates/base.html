@@ -24,13 +24,14 @@
                     <a href="{{ url_for('home') }}" class="box-link">Home</a>
                     <a href="{{ url_for('about') }}" class="box-link">About</a>
                 </div>
-            
-                <div class="nav-center">
+
+                <!--<div class="nav-center">
                     <img src="{{ url_for('static', filename='./image/8-Bit Love GIF by PAC-MAN™.gif') }}" class="nav-gif">
                 </div>
-            
+            -->
                 <div class="nav-right">
                     {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('new_post') }}" class="right_nav_btn">New Post</a>
                         <a href="{{ url_for('account') }}" class="right_nav_btn">Account</a>
                         <a href="{{ url_for('logout') }}" class="right_nav_btn">Logout</a>
                     {% else %}

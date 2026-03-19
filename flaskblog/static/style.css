@@ -22,7 +22,7 @@ nav {
 
 .box-link:hover,
 .right_nav_btn:hover {
-    background-color: #004d00; /* Чуть темнее при наведении */
+    background-color: #004d00;
 }
 
 /* Контейнеры для выравнивания */
@@ -43,7 +43,7 @@ nav {
 }
 
 .nav-gif {
-    height: 40px; /* Укажите нужную высоту гифки */
+    height: 40px;
     display: block;
 }
 
@@ -109,6 +109,8 @@ a.article-title:hover {
     padding-bottom: 1px;
     margin-bottom: 4px;
     border-bottom: 1px solid #e3e3e3;
+    text-decoration: none;
+    color: #333;
 }
 
 .article-metadata a:hover {
