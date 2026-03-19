@@ -4,19 +4,21 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Log In</legend>
-            <div class="form-group">
-                {{ form.email.label(class="form-control-label") }} {% if
-                form.email.errors %} {{ form.email(class="form-control
+
+            <div class="form-group mb-4">
+                {{ form.login.label(class="form-control-label") }} {% if
+                form.login.errors %} {{ form.login(class="form-control
                 form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
-                    {% for error in form.email.errors %}
+                    {% for error in form.login.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %} {{ form.email(class="form-control form-control-lg")
+                {% else %} {{ form.login(class="form-control form-control-lg")
                 }} {% endif %}
             </div>
-            <div class="form-group">
+
+            <div class="form-group mb-4">
                 {{ form.password.label(class="form-control-label") }} {% if
                 form.password.errors %} {{ form.password(class="form-control
                 form-control-lg is-invalid") }}
@@ -28,12 +30,13 @@
                 {% else %} {{ form.password(class="form-control
                 form-control-lg") }} {% endif %}
             </div>
-            <div class="form-check">
+
+            <div class="form-check mb-4">
                 {{ form.remember(class="form-check-input") }} {{
                 form.remember.label(class="form-check-label") }}
             </div>
         </fieldset>
-        <div class="form-group">
+        <div class="form-group mb-4">
             {{ form.submit(class="btn btn-outline-info") }}
         </div>
         <small class="text-muted ml-2">
