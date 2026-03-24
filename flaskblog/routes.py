@@ -8,7 +8,14 @@ from PIL import Image
 
 from flaskblog import app, bcrypt, db
 
-from .forms import LoginForm, PostForm, RegistrationForm, UpdateAccountForm
+from .forms import (
+    LoginForm,
+    PostForm,
+    RegistrationForm,
+    RequestResetForm,
+    ResetPasswordForm,
+    UpdateAccountForm,
+)
 from .models import Post, User
 
 
@@ -16,7 +23,9 @@ from .models import Post, User
 @app.route('/home')
 def home():
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(
+        page=page, per_page=5
+    )
     return render_template('home.html', posts=posts, title='Home')
 
 
@@ -184,12 +193,18 @@ def delete_post(post_id):
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('home'))
 
+
 @app.route('/user/<string:username>')
 def user_post(username):
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
-    posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    return render_template('user_post.html', posts=posts, title='User Posts', user=user)
+    posts = (
+        Post.query.filter_by(author=user)
+        .order_by(Post.date_posted.desc())
+        .paginate(page=page, per_page=5)
+    )
+    return render_template(
+        'user_post.html', posts=posts, title='User Posts', user=user
+    )
 
-    
 
