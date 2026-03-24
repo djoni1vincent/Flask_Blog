@@ -107,7 +107,7 @@ a.article-title:hover {
 
 .article-metadata {
     padding-bottom: 1px;
-    margin-bottom: 4px;
+    margin-bottom: 10px;
     border-bottom: 1px solid #e3e3e3;
     text-decoration: none;
     color: #333;
@@ -155,17 +155,14 @@ a.article-title:hover {
 
 /* Limits text to 3 lines by default */
 .collapsible-text {
+    max-height: 100px; /* Высота, которую вы хотите видеть до нажатия "See more" */
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; 
-    -webkit-box-orient: vertical;
-    transition: max-height 0.3s ease-out;
+    display: block;
+    transition: max-height 0.3s ease;
 }
 
-/* Class to show full text */
 .collapsible-text.expanded {
-    -webkit-line-clamp: unset;
-    display: block;
+    max-height: none;
 }
 
 .see-more-link {
