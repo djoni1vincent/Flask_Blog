@@ -23,20 +23,19 @@
             >
         </h2>
         <div class="article-body">
-            <p
+            <div
                 class="article-content collapsible-text"
                 id="post-content-{{ post.id }}"
             >
-                {{ post.content }}
-            </p>
-
+                {{ post.content | markdown | safe }}
+            </div>
+        
             <a
                 href="javascript:void(0);"
                 onclick="toggleText('{{ post.id }}')"
                 id="toggle-btn-{{ post.id }}"
                 class="see-more-link"
-                >See more ▼</a
-            >
+            >See more ▼</a>
         </div>
     </div>
 </article>

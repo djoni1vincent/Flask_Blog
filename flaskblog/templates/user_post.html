@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
-<h1>Posts by {{ user.username }} ({{ posts.total }}) </h1>
+<h1>Posts by {{ user.username }} ({{ posts.total }})</h1>
 {% for post in posts %}
 <article class="media content-section">
     <img
@@ -21,12 +21,12 @@
             >
         </h2>
         <div class="article-body">
-            <p
+            <div
                 class="article-content collapsible-text"
                 id="post-content-{{ post.id }}"
             >
-                {{ post.content }}
-            </p>
+                {{ post.content | markdown | safe }}
+            </div>
 
             <a
                 href="javascript:void(0);"

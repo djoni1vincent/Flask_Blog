@@ -1,6 +1,5 @@
-from functools import Placeholder
-
 from flask_login import current_user
+from flask_pagedown.fields import PageDownField
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField
 from wtforms import (
@@ -94,5 +93,5 @@ class UpdateAccountForm(FlaskForm):
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    content = TextAreaField('Content', validators=[DataRequired()])
-    submit = SubmitField("Post")
+    content = PageDownField('Content', validators=[DataRequired()])
+    submit = SubmitField('Post')
