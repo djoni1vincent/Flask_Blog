@@ -1,5 +1,4 @@
 from flask_login import current_user
-from flask_pagedown.fields import PageDownField
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField
 from wtforms import (
@@ -7,7 +6,6 @@ from wtforms import (
     PasswordField,
     StringField,
     SubmitField,
-    TextAreaField,
 )
 from wtforms.validators import (
     DataRequired,
@@ -89,12 +87,6 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError(
                     'That email is taken. Please choose a different one.'
                 )
-
-
-class PostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    content = PageDownField('Content', validators=[DataRequired()])
-    submit = SubmitField('Post')
 
 
 class RequestResetForm(FlaskForm):
