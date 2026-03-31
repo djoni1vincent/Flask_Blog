@@ -1,11 +1,11 @@
 import os
 import secrets
 
-from flask import url_for
+from flask import current_app, url_for
 from flask_mail import Message
 from PIL import Image
 
-from flaskblog import app, mail
+from flaskblog import mail
 
 
 def save_picture(form_picture):
@@ -13,7 +13,7 @@ def save_picture(form_picture):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(
-        app.root_path, 'static/profile_pics', picture_fn
+        current_app.root_path, 'static/profile_pics', picture_fn
     )
 
     output_size = (125, 125)
@@ -28,7 +28,7 @@ def send_reset_email(user):
     token = user.get_reset_token()
     msg = Message(
         'Password Reset Request',
-        sender=app.config['MAIL_USERNAME'],
+        sender=current_app.config['MAIL_USERNAME'],
         recipients=[user.email],
     )
 
