@@ -2,3 +2,10 @@
 /.env
 /__pycache__
 /__pycache__
+/__pycache__
+/__pycache__
+/flaskblog/posts/__pycache__
+/flaskblog/main/__pycache__
+/.zed
+/flaskblog/static/profile_pics
+/flaskblog/users/__pycache__
