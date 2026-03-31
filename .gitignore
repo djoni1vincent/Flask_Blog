@@ -9,3 +9,5 @@
 /.zed
 /flaskblog/static/profile_pics
 /flaskblog/users/__pycache__
+/flaskblog/site.db
+/flaskblog/site.db
