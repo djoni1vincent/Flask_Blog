@@ -16,7 +16,7 @@
         <h2>
             <a
                 class="article-title"
-                href="{{ url_for('post', post_id=post.id) }}"
+                href="{{ url_for('posts.post', post_id=post.id) }}"
                 >{{ post.title }}</a
             >
         </h2>
@@ -44,13 +44,13 @@ left_current=1, right_current=2) %} {% if page_num %} {% if posts.page ==
 page_num %}
 <a
     class="btn btn-sm btn-secondary mb-4"
-    href="{{ url_for('home', page=page_num) }}"
+    href="{{ url_for('main.home', page=page_num) }}"
     >{{ page_num }}</a
 >
 {% else %}
 <a
     class="btn btn-sm btn-outline-secondary mb-4"
-    href="{{ url_for('home', page=page_num) }}"
+    href="{{ url_for('main.home', page=page_num) }}"
     >{{ page_num }}</a
 >
 {% endif %} {% endif %} {% endfor %} {% endblock content %}

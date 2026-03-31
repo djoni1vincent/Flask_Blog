@@ -23,22 +23,18 @@
         <header>
             <nav>
                 <div class="nav-left">
-                    <a href="{{ url_for('home') }}" class="box-link">Home</a>
-                    <a href="{{ url_for('about') }}" class="box-link">About</a>
+                    <a href="{{ url_for('main.home') }}" class="box-link">Home</a>
+                    <a href="{{ url_for('main.about') }}" class="box-link">About</a>
                 </div>
 
-                <!--<div class="nav-center">
-                    <img src="{{ url_for('static', filename='./image/8-Bit Love GIF by PAC-MAN™.gif') }}" class="nav-gif">
-                </div>
-            -->
                 <div class="nav-right">
                     {% if current_user.is_authenticated %}
-                        <a href="{{ url_for('new_post') }}" class="right_nav_btn">New Post</a>
-                        <a href="{{ url_for('account') }}" class="right_nav_btn">Account</a>
-                        <a href="{{ url_for('logout') }}" class="right_nav_btn">Logout</a>
+                        <a href="{{ url_for('posts.new_post') }}" class="right_nav_btn">New Post</a>
+                        <a href="{{ url_for('users.account') }}" class="right_nav_btn">Account</a>
+                        <a href="{{ url_for('users.logout') }}" class="right_nav_btn">Logout</a>
                     {% else %}
-                        <a href="{{ url_for('login') }}" class="right_nav_btn">Login</a>
-                        <a href="{{ url_for('register') }}" class="right_nav_btn">Register</a>
+                        <a href="{{ url_for('users.login') }}" class="right_nav_btn">Login</a>
+                        <a href="{{ url_for('users.register') }}" class="right_nav_btn">Register</a>
                     {% endif %}
                 </div>
             </nav>
