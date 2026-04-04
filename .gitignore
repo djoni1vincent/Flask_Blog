@@ -11,3 +11,5 @@
 /flaskblog/users/__pycache__
 /flaskblog/site.db
 /flaskblog/site.db
+/flaskblog/errors/__pycache__
+/instance/site.db
