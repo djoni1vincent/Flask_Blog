@@ -1,38 +1,40 @@
 {% extends "base.html" %} {% block content %}
 <div class="content-section">
-    <form method="POST" action="">
+    <form method="POST" action="" class="indie-form">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">New Post</legend>
+            <legend class="form-legend">
+                {{ legend if legend else 'New Post' }}
+            </legend>
 
-            <div class="form-group mb-4">
-                {{ form.title.label(class="form-control-label") }} {% if
-                form.title.errors %} {{ form.title(class="form-control
-                form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
+            <div class="form-field">
+                {{ form.title.label(class="form-label") }} {% if
+                form.title.errors %} {{ form.title(class="form-input
+                is-invalid") }}
+                <div class="error-message">
                     {% for error in form.title.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %} {{ form.title(class="form-control form-control-lg")
-                }} {% endif %}
+                {% else %} {{ form.title(class="form-input",
+                placeholder="Title") }} {% endif %}
             </div>
 
-            <div class="form-group mb-4">
-                {{ form.content.label(class="form-control-label") }} {% if
-                form.content.errors %} {{ form.content(class="form-control
-                form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
+            <div class="form-field">
+                {{ form.content.label(class="form-label") }} {% if
+                form.content.errors %} {{ form.content(class="form-input
+                is-invalid", rows="15") }}
+                <div class="error-message">
                     {% for error in form.content.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %} {{ form.content(class="form-control form-control-lg")
-                }} {% endif %}
+                {% else %} {{ form.content(class="form-input", rows="15",
+                placeholder="Write something...") }} {% endif %}
             </div>
         </fieldset>
-        <div class="form-group mb-4">
-            {{ form.submit(class="btn btn-outline-info") }}
+        <div class="form-actions">
+            {{ form.submit(class="box-link submit-btn") }}
         </div>
     </form>
 </div>

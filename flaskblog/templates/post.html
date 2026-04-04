@@ -1,29 +1,29 @@
-{% extends "base.html" %} {% block content %} {{ pagedown.include_pagedown() }}
-<article class="media content-section">
-    <img
-        class="rounded-circle article-img"
-        src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}"
-    />
-    <div class="media-body">
+{% extends "base.html" %} {% block content %}
+<article class="content-section">
+    <div class="media single-post-header">
+        <img
+            class="article-img"
+            src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}"
+        />
         <div class="article-metadata">
             <a
-                class="mr-2"
                 href="{{ url_for('users.user_post', username=post.author.username) }}"
                 >{{ post.author.username }}</a
             >
-            <small class="text-muted"
-                >{{ post.date_posted.strftime('%Y-%m-%d') }}</small
+            <span class="date"
+                >— {{ post.date_posted.strftime('%d %b %Y') }}</span
             >
+
             {% if post.author == current_user %}
-            <div>
+            <div class="post-controls">
                 <a
-                    class="btn btn-secondary btn-sm mt-1 mb-1"
+                    class="control-link"
                     href="{{ url_for('posts.update_post', post_id=post.id) }}"
-                    >Update</a
+                    >Edit</a
                 >
                 <button
                     type="button"
-                    class="btn btn-danger btn-sm m-1"
+                    class="control-link delete-btn"
                     data-bs-toggle="modal"
                     data-bs-target="#deleteModal"
                 >
@@ -32,23 +32,17 @@
             </div>
             {% endif %}
         </div>
-        <h2 class="article-title">{{ post.title }}</h2>
-        <p class="article-content">{{ post.content | markdown | safe }}</p>
     </div>
+
+    <h1 class="post-title-main">{{ post.title }}</h1>
+    <div class="article-content">{{ post.content | markdown | safe }}</div>
 </article>
-<!-- Modal -->
-<div
-    class="modal fade"
-    id="deleteModal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="deleteModalLabel"
-    aria-hidden="true"
->
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content indie-modal">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+                <h5 class="modal-title">Delete Post?</h5>
                 <button
                     type="button"
                     class="btn-close"
@@ -56,22 +50,30 @@
                     aria-label="Close"
                 ></button>
             </div>
+            <div class="modal-body">
+                This action cannot be undone. Are you sure?
+            </div>
             <div class="modal-footer">
                 <button
                     type="button"
-                    class="btn btn-secondary"
+                    class="box-link"
+                    style="background: #ccc; border-color: #ccc; color: #000"
                     data-bs-dismiss="modal"
                 >
-                    Close
+                    Cancel
                 </button>
                 <form
                     action="{{ url_for('posts.delete_post', post_id=post.id) }}"
                     method="POST"
                 >
                     <input
-                        class="btn btn-danger"
+                        class="box-link"
+                        style="
+                            background: var(--accent-color);
+                            border-color: var(--accent-color);
+                        "
                         type="submit"
-                        value="Delete"
+                        value="Delete Forever"
                     />
                 </form>
             </div>

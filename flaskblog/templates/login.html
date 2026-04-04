@@ -1,53 +1,51 @@
 {% extends 'base.html' %} {% block content %}
 <div class="content-section">
-    <form method="POST" action="">
+    <form method="POST" action="" class="indie-form">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Log In</legend>
+            <legend class="form-legend">Log In</legend>
 
-            <div class="form-group mb-4">
-                {{ form.login.label(class="form-control-label") }} {% if
-                form.login.errors %} {{ form.login(class="form-control
-                form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
+            <div class="form-field">
+                {{ form.login.label(class="form-label") }} {% if
+                form.login.errors %} {{ form.login(class="form-input
+                is-invalid") }}
+                <div class="error-message">
                     {% for error in form.login.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %} {{ form.login(class="form-control form-control-lg")
-                }} {% endif %}
+                {% else %} {{ form.login(class="form-input") }} {% endif %}
             </div>
 
-            <div class="form-group mb-4">
-                {{ form.password.label(class="form-control-label") }} {% if
-                form.password.errors %} {{ form.password(class="form-control
-                form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
+            <div class="form-field">
+                {{ form.password.label(class="form-label") }} {% if
+                form.password.errors %} {{ form.password(class="form-input
+                is-invalid") }}
+                <div class="error-message">
                     {% for error in form.password.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %} {{ form.password(class="form-control
-                form-control-lg") }} {% endif %}
+                {% else %} {{ form.password(class="form-input") }} {% endif %}
             </div>
 
-            <div class="form-check mb-4">
+            <div class="form-check-indie">
                 {{ form.remember(class="form-check-input") }} {{
                 form.remember.label(class="form-check-label") }}
             </div>
         </fieldset>
-        <div class="form-group mb-4">
-            {{ form.submit(class="btn btn-outline-info") }}
+
+        <div class="form-actions">
+            {{ form.submit(class="box-link submit-btn") }}
+            <a class="forgot-link" href="{{ url_for('users.reset_request') }}"
+                >Forgot Password?</a
+            >
         </div>
-        <small class="text-muted ml-2">
-            <a href="{{ url_for('users.reset_request') }}">Forgot Password?</a>
-        </small>
     </form>
 </div>
-<div class="border-top pt-3">
-    <small class="text-muted">
-        Need An Account?
-        <a class="ml-2" href="{{ url_for('users.register') }}">Sign Up Now</a>
-    </small>
+
+<div class="form-footer-note">
+    <span>Need An Account?</span>
+    <a href="{{ url_for('users.register') }}">Sign Up Now</a>
 </div>
 {% endblock content %}

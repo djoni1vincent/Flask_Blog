@@ -1,177 +1,209 @@
-nav {
-    background-color: whitesmoke;
-    margin-bottom: 50px;
-    display: flex; /* Включаем flexbox */
-    align-items: center; /* Центрируем всё по вертикали */
-    justify-content: space-between; /* Расталкиваем блоки влево, центр и вправо */
-    padding: 0 10px;
+:root {
+    --bg-color: #fdfcf8;
+    --text-color: #1a1a1a;
+    --accent-color: #b91c1c;
+    --border-color: #1a1a1a;
+    --meta-color: #666666;
+    --mono-font: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+    --serif-font: "Charter", "Bitstream Charter", "Sitka Text", "Cambria", serif;
 }
 
-/* Общие стили для всех кнопок в nav */
-.box-link,
-.right_nav_btn {
-    display: inline-block;
-    background-color: darkgreen;
-    color: white;
-    padding: 5px 20px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    border: 1px solid black;
-}
-
-.box-link:hover,
-.right_nav_btn:hover {
-    background-color: #004d00;
-}
-
-/* Контейнеры для выравнивания */
-.nav-left,
-.nav-right {
-    flex: 1; /* Занимают равное пространство, чтобы центр был реально в центре */
-    display: flex;
-    gap: 5px;
-}
-
-.nav-right {
-    justify-content: flex-end; /* Кнопки справа прижимаем к правому краю */
-}
-
-.nav-center {
-    display: flex;
-    justify-content: center;
-}
-
-.nav-gif {
-    height: 40px;
-    display: block;
-}
-
+/* Base styles */
 body {
-    background: #fafafa;
-    color: #333333;
-    margin-top: 5rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--serif-font);
+    line-height: 1.7;
+    margin: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: #444444;
+.container, main {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.bg-steel {
-    background-color: #5f788a;
+/* Navigation */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0;
+    margin-bottom: 60px;
+    border-bottom: 2px solid var(--border-color);
 }
 
-.site-header .navbar-nav .nav-link {
-    color: #cbd5db;
+.nav-left, .nav-right {
+    display: flex;
+    gap: 15px;
+    flex: 1;
 }
 
-.site-header .navbar-nav .nav-link:hover {
-    color: #ffffff;
+.nav-right { justify-content: flex-end; }
+
+.box-link, .right_nav_btn {
+    display: inline-block;
+    background-color: var(--border-color);
+    color: var(--bg-color);
+    padding: 6px 14px;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    font-family: var(--mono-font);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    transition: all 0.15s ease;
 }
 
-.site-header .navbar-nav .nav-link.active {
-    font-weight: 500;
+.box-link:hover, .right_nav_btn:hover {
+    background-color: transparent;
+    color: var(--text-color);
 }
 
-.content-section {
-    background: #ffffff;
-    padding: 10px 20px;
-    border: 1px solid #dddddd;
-    border-radius: 3px;
-    margin-bottom: 20px;
-}
+/* Typography */
+h1, h2, h3 { font-weight: 900; letter-spacing: -1px; }
 
 .article-title {
-    color: #444444;
-}
-
-a.article-title:hover {
-    color: #428bca;
+    font-size: 2rem;
+    font-weight: 800;
     text-decoration: none;
+    color: var(--text-color);
 }
 
-.article-content {
-    white-space: pre-line;
+.article-title:hover {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
 }
 
-.article-img {
-    height: 65px;
-    width: 65px;
-    margin-right: 16px;
-    object-fit: cover;
-    border-radius: 50%;
+/* Content & Posts */
+.content-section {
+    padding: 40px 0;
+    border-top: 1px solid #e0ddd5;
 }
 
 .article-metadata {
-    padding-bottom: 1px;
+    font-family: var(--mono-font);
+    font-size: 0.8rem;
+    color: var(--meta-color);
+    text-transform: uppercase;
     margin-bottom: 10px;
-    border-bottom: 1px solid #e3e3e3;
-    text-decoration: none;
-    color: #333;
 }
 
-.article-metadata a:hover {
-    color: #333;
-    text-decoration: none;
+.article-content { font-size: 1.15rem; white-space: pre-line; }
+
+.article-content a {
+    color: var(--accent-color);
+    text-decoration: underline;
 }
 
-.article-svg {
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
+.article-content a:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+/* Forms */
+.form-field { margin-bottom: 25px; }
+
+.form-label {
+    display: block;
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    font-family: var(--serif-font);
+    font-size: 1rem;
+}
+
+.form-input:focus {
+    outline: none;
+    box-shadow: 4px 4px 0px var(--border-color);
+}
+
+.form-legend {
+    font-weight: 800;
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+/* Media & Avatars */
+.article-img {
+    height: 70px; width: 70px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+    margin-right: 20px;
 }
 
 .account-img {
-    height: 125px;
-    width: 125px;
-    margin-right: 20px;
-    margin-bottom: 16px;
+    height: 150px; width: 150px;
+    border: 2px solid var(--border-color);
+    margin-right: 30px;
 }
 
-.account-heading {
-    font-size: 2.5rem;
-    margin-bottom: 0; /* Убираем лишний отступ снизу */
-}
-
-.media {
-    display: flex; /* Включает выравнивание в ряд */
-    align-items: center; /* Центрирует текст по вертикали относительно картинки */
-    margin-bottom: 20px;
-}
-
-/* Стили для заголовка с именем */
-.account-heading {
-    font-size: 2.5rem;
-    margin-bottom: 0; /* Убираем лишний отступ снизу */
-}
-
-/* Стили для почты */
-.text-secondary {
-    margin-top: 0; /* Убираем лишний отступ сверху */
-}
-
-/* Limits text to 3 lines by default */
+/* Collapsible text */
 .collapsible-text {
-    max-height: 100px; /* Высота, которую вы хотите видеть до нажатия "See more" */
+    max-height: 120px;
     overflow: hidden;
-    display: block;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
 }
 
-.collapsible-text.expanded {
-    max-height: none;
-}
+.collapsible-text.expanded { max-height: 2000px; }
 
 .see-more-link {
-    font-size: 0.9rem;
-    color: #007bff;
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    border-bottom: 1px dashed var(--accent-color);
     text-decoration: none;
-    cursor: pointer;
-    display: inline-block;
-    margin-top: 5px;
 }
+
+/* Pagination */
+.pagination-container {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 2px solid var(--border-color);
+    font-family: var(--mono-font);
+}
+
+.page-number {
+    padding: 5px 10px;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.page-number.current {
+    background: var(--border-color);
+    color: var(--bg-color);
+}
+
+/* Utils & Modals */
+.indie-modal {
+    border-radius: 0;
+    border: 3px solid var(--border-color);
+    background: var(--bg-color);
+}
+
+.post-controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.control-link {
+    font-family: var(--mono-font);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--meta-color);
+    text-decoration: underline;
+    background: none; border: none; cursor: pointer;
+}
+
+.control-link:hover { color: var(--accent-color); }
