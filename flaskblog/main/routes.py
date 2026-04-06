@@ -42,4 +42,3 @@ def search():
     return render_template(
         'search.html', title='Search', form=form, posts=posts, q=search_query
     )
- 
