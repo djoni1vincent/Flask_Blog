@@ -4,8 +4,10 @@
     --accent-color: #b91c1c;
     --border-color: #1a1a1a;
     --meta-color: #666666;
-    --mono-font: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
-    --serif-font: "Charter", "Bitstream Charter", "Sitka Text", "Cambria", serif;
+    --mono-font:
+        ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+    --serif-font:
+        "Charter", "Bitstream Charter", "Sitka Text", "Cambria", serif;
 }
 
 /* Base styles */
@@ -17,7 +19,8 @@ body {
     margin: 0;
 }
 
-.container, main {
+.container,
+main {
     max-width: 750px;
     margin: 0 auto;
     padding: 0 20px;
@@ -33,15 +36,19 @@ nav {
     border-bottom: 2px solid var(--border-color);
 }
 
-.nav-left, .nav-right {
+.nav-left,
+.nav-right {
     display: flex;
     gap: 15px;
     flex: 1;
 }
 
-.nav-right { justify-content: flex-end; }
+.nav-right {
+    justify-content: flex-end;
+}
 
-.box-link, .right_nav_btn {
+.box-link,
+.right_nav_btn {
     display: inline-block;
     background-color: var(--border-color);
     color: var(--bg-color);
@@ -54,13 +61,19 @@ nav {
     transition: all 0.15s ease;
 }
 
-.box-link:hover, .right_nav_btn:hover {
+.box-link:hover,
+.right_nav_btn:hover {
     background-color: transparent;
     color: var(--text-color);
 }
 
 /* Typography */
-h1, h2, h3 { font-weight: 900; letter-spacing: -1px; }
+h1,
+h2,
+h3 {
+    font-weight: 900;
+    letter-spacing: -1px;
+}
 
 .article-title {
     font-size: 2rem;
@@ -88,7 +101,10 @@ h1, h2, h3 { font-weight: 900; letter-spacing: -1px; }
     margin-bottom: 10px;
 }
 
-.article-content { font-size: 1.15rem; white-space: pre-line; }
+.article-content {
+    font-size: 1.15rem;
+    white-space: pre-line;
+}
 
 .article-content a {
     color: var(--accent-color);
@@ -101,7 +117,9 @@ h1, h2, h3 { font-weight: 900; letter-spacing: -1px; }
 }
 
 /* Forms */
-.form-field { margin-bottom: 25px; }
+.form-field {
+    margin-bottom: 25px;
+}
 
 .form-label {
     display: block;
@@ -135,14 +153,16 @@ h1, h2, h3 { font-weight: 900; letter-spacing: -1px; }
 
 /* Media & Avatars */
 .article-img {
-    height: 70px; width: 70px;
+    height: 70px;
+    width: 70px;
     object-fit: cover;
     border: 1px solid var(--border-color);
     margin-right: 20px;
 }
 
 .account-img {
-    height: 150px; width: 150px;
+    height: 150px;
+    width: 150px;
     border: 2px solid var(--border-color);
     margin-right: 30px;
 }
@@ -154,7 +174,9 @@ h1, h2, h3 { font-weight: 900; letter-spacing: -1px; }
     transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
 }
 
-.collapsible-text.expanded { max-height: 2000px; }
+.collapsible-text.expanded {
+    max-height: 2000px;
+}
 
 .see-more-link {
     font-family: var(--mono-font);
@@ -203,7 +225,92 @@ h1, h2, h3 { font-weight: 900; letter-spacing: -1px; }
     text-transform: uppercase;
     color: var(--meta-color);
     text-decoration: underline;
-    background: none; border: none; cursor: pointer;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
-.control-link:hover { color: var(--accent-color); }
+.control-link:hover {
+    color: var(--accent-color);
+}
+
+/* Search meta info */
+.search-results-meta {
+    margin: 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #e0ddd5;
+}
+
+.mono-text {
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--meta-color);
+}
+
+.article-content {
+    white-space: pre-line;
+    font-size: 1.15rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* --- MARKDOWN EDITOR (PAGEDOWN) --- */
+
+/* Textarea styling */
+.flask-pagedown-input {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    font-family: var(
+        --mono-font
+    ); /* Monospace is better for writing markdown */
+    font-size: 1rem;
+    min-height: 300px;
+    margin-bottom: 20px;
+}
+
+.flask-pagedown-input:focus {
+    outline: none;
+    box-shadow: 4px 4px 0px var(--border-color);
+}
+
+/* Preview area styling */
+.flask-pagedown-preview {
+    margin-top: 40px;
+    padding: 20px;
+    background: #f0eee9; /* Slightly darker paper for preview contrast */
+    border: 1px dashed var(--meta-color);
+    font-family: var(--serif-font);
+}
+
+/* Label for preview */
+.flask-pagedown-preview::before {
+    content: "PREVIEW";
+    font-family: var(--mono-font);
+    font-size: 0.7rem;
+    color: var(--meta-color);
+    display: block;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+/* Fix images in preview and content */
+.article-content img,
+.flask-pagedown-preview img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border-color);
+    display: block;
+    margin: 20px 0;
+}
+
+/* Fix long words/links in Markdown content */
+.article-content,
+.flask-pagedown-preview {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}

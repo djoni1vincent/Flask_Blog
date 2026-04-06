@@ -22,15 +22,15 @@
 
             <div class="form-field">
                 {{ form.content.label(class="form-label") }} {% if
-                form.content.errors %} {{ form.content(class="form-input
-                is-invalid", rows="15") }}
+                form.content.errors %} {{
+                form.content(class="flask-pagedown-input is-invalid") }}
                 <div class="error-message">
                     {% for error in form.content.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %} {{ form.content(class="form-input", rows="15",
-                placeholder="Write something...") }} {% endif %}
+                {% else %} {{ form.content(class="flask-pagedown-input") }} {%
+                endif %}
             </div>
         </fieldset>
         <div class="form-actions">

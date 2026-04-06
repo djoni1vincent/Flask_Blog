@@ -21,12 +21,16 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Post', backref='author', lazy=True)
 
     def get_reset_token(self):
-        s = Serialiser(current_app.config['SECRET_KEY'], salt='password-reset-salt')
+        s = Serialiser(
+            current_app.config['SECRET_KEY'], salt='password-reset-salt'
+        )
         return s.dumps({'user_id': self.id})
 
     @staticmethod
     def verify_reset_token(token, expires_sec=1800):
-        s = Serialiser(current_app.config['SECRET_KEY'], salt='password-reset-salt')
+        s = Serialiser(
+            current_app.config['SECRET_KEY'], salt='password-reset-salt'
+        )
         try:
             user_id = s.loads(token, max_age=expires_sec)['user_id']
         except:
@@ -38,6 +42,7 @@ class User(db.Model, UserMixin):
 
 
 class Post(db.Model):
+    # __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(
@@ -47,4 +52,15 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"User('{self.title}', '{self.date_posted}'"
+        return f"Post('{self.title}', '{self.date_posted}')"
+
+
+# class Item(db.Model):
+#     __tablename__ = 'items'
+#     id = db.Column(db.Integer, primary_key=True)
+#     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
+#     post = db.relationship('Post', backref=db.backref('items', lazy=True))
+#     content = db.Column(db.Text, nullable=False)
+
+#     def __repr__(self):
+#         return f"Item('{self.content[:20]}...')"

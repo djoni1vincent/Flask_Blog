@@ -30,6 +30,9 @@
                         <a href="{{ url_for('main.about') }}" class="box-link"
                             >About</a
                         >
+                        <a href="{{ url_for('main.search') }}" class="box-link"
+                            >Search</a
+                        >
                     </div>
                     <div class="nav-right">
                         {% if current_user.is_authenticated %}
@@ -83,8 +86,7 @@
             >
                 <hr />
                 <p>
-                    © {{ now.year if now else '2026' }} — Built with Flask &
-                    Indie Spirit
+                    © {{ now.year if now else '2026' }} djoni1vincent
                 </p>
             </footer>
         </div>

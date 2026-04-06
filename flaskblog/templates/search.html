@@ -1,0 +1,78 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="{{ url_for('main.search') }}" class="indie-form search-form">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="form-legend">Search Posts</legend>
+            <div class="form-field">
+                {{ form.ids.label(class="form-label") }}
+                {% if form.ids.errors %}
+                    {{ form.ids(class="form-input is-invalid") }}
+                    <div class="error-message">
+                        {% for error in form.ids.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.ids(class="form-input", placeholder="Enter title keywords...") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-actions">
+            {{ form.submit(class="box-link submit-btn") }}
+        </div>
+    </form>
+</div>
+
+{% if posts %}
+    <div class="search-results-meta">
+        <p class="mono-text">Found {{ posts.total }} matching entries</p>
+    </div>
+
+    {% for post in posts.items %}
+    <article class="content-section">
+        <div class="media">
+            <img class="article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" />
+            <div class="article-metadata">
+                <a href="{{ url_for('users.user_post', username=post.author.username) }}">{{ post.author.username }}</a>
+                <span class="date">— {{ post.date_posted.strftime('%d %b %Y') }}</span>
+            </div>
+        </div>
+
+        <h2 class="post-title-wrapper">
+            <a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a>
+        </h2>
+
+        <div class="article-body">
+            <div class="article-content collapsible-text" id="post-content-{{ post.id }}">
+                {{ post.content | markdown | safe }}
+            </div>
+            <a href="javascript:void(0);" onclick="toggleText('{{ post.id }}')" id="toggle-btn-{{ post.id }}" class="see-more-link">Read More →</a>
+        </div>
+    </article>
+    {% endfor %}
+
+    <div class="pagination-container">
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+            {% if page_num %}
+                {% if posts.page == page_num %}
+                    <span class="page-number current">{{ page_num }}</span>
+                {% else %}
+                    <a class="page-number" href="{{ url_for('main.search', page=page_num, q=q) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                <span class="page-dots">...</span>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% else %}
+    {% if q %}
+        <div class="form-footer-note">
+            <p class="mono-text" style="color: var(--accent-color);">No entries found for "{{ q }}".</p>
+        </div>
+    {% endif %}
+{% endif %}
+
+{% endblock content %}
