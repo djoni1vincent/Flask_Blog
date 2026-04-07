@@ -1,61 +1,42 @@
-# Flask Blog Application
+# Flask-Blog Application
 
-This is a simple blog web application built with Flask. Users can register, log in, update their profile, and create posts.
+A feature-rich, full-stack blog application built with Python and the Flask web framework. This project follows modern web development patterns, including modular architecture with Blueprints and secure database interactions with SQLAlchemy.
 
-## Core Features
+## 🚀 Live Demo
+The application is deployed and available at:
+[http://13.62.18.132/home](http://13.62.18.132/home)
 
-- **Registration and Authentication**: Users can create accounts and log in securely.
-- **User Profiles**: Ability to update username, email, and upload an avatar.
-- **Post Management**: Create and view blog entries.
-- **Database**: Uses SQLite with SQLAlchemy ORM.
+## ✨ Key Features
+- **User Authentication:** Secure registration, login, and logout functionality using Flask-Login and Bcrypt for password hashing.
+- **Post Management:** Fully functional CRUD (Create, Read, Update, Delete) operations for blog posts.
+- **User Profiles:** Personalized user accounts with the ability to update account details (username, email) and upload custom profile pictures.
+- **Markdown Support:** Write and render blog posts using Markdown syntax with live preview (via Flask-PageDown).
+- **Search Functionality:** Integrated search feature to quickly find posts by title.
+- **Pagination:** Clean and efficient post navigation on the home and search pages.
+- **Password Reset:** Secure password recovery system using email-based tokens.
+- **Responsive Design:** A modern, not 'mobile-friendly' interface built with Bootstrap 5 and custom CSS.
+- **Custom Error Handling:** Dedicated pages for common HTTP errors (403, 404, 500).
 
-## Installation and Setup
+## 🛠️ Tech Stack
+- **Framework:** [Flask](https://flask.palletsprojects.com/)
+- **Database:** [SQLAlchemy](https://www.sqlalchemy.org/) (ORM)
+- **Forms:** [Flask-WTF](https://flask-wtf.readthedocs.io/)
+- **Security:** [Flask-Bcrypt](https://flask-bcrypt.readthedocs.io/)
+- **Authentication:** [Flask-Login](https://flask-login.readthedocs.io/)
+- **Mail:** [Flask-Mail](https://pythonhosted.org/flask-mail/)
+- **Markdown:** [Flask-PageDown](https://pythonhosted.org/Flask-PageDown/) & [Markdown](https://pythonhosted.org/Markdown/)
+- **Frontend:** HTML5, CSS3, JavaScript, Bootstrap 5
+- **Image Processing:** [Pillow](https://python-pillow.org/)
 
-### 1. Environment Setup
-Make sure you have Python installed. It is recommended to use a virtual environment:
+## 📂 Project Structure
+The application follows the "Application Factory" pattern with modular blueprints:
+- `flaskblog/users`: User-related routes (auth, account, profile pics).
+- `flaskblog/posts`: Blog post management (CRUD).
+- `flaskblog/main`: Core pages (Home, About, Search).
+- `flaskblog/errors`: Custom error handlers.
+- `flaskblog/models.py`: Database schema and relationships.
+- `flaskblog/static`: CSS, JS, and user-uploaded media.
+- `flaskblog/templates`: Jinja2 templates for all views.
 
-```bash
-# Create a virtual environment
-python -m venv .venv
-
-# Activation (Linux/macOS)
-source .venv/bin/activate
-
-# Activation (Windows)
-.venv\Scripts\activate
-```
-
-### 2. Install Dependencies
-Install the required packages (if they are not already installed):
-
-```bash
-pip install flask flask-sqlalchemy flask-bcrypt flask-login flask-wtf email-validator pillow python-dotenv
-```
-
-### 3. Configuration
-The secret key (`SECRET_KEY`) is stored in a separate `.env` file for security. Ensure that the `.env` file contains the key:
-
-```env
-SECRET_KEY=your_secret_key
-```
-
-### 4. Run the Application
-You can run the application via the `run.py` file:
-
-```bash
-python run.py
-```
-
-After that, the application will be available at: `http://127.0.0.1:5000`
-
-## Project Structure
-
-- `flaskblog/`: Main application package.
-  - `models.py`: Database models (User, Post).
-  - `routes.py`: Application routes and logic.
-  - `forms.py`: Registration, login, and post creation forms.
-  - `static/`: Static files (CSS, profile pictures).
-  - `templates/`: HTML templates.
-- `run.py`: Entry point to start the server.
-- `.env`: File with secret environment variables.
-- `site.db`: SQLite database (created automatically).
+---
+*Note: This project was developed as part of a Python/Flask learning path, focusing on scalable architecture and secure web development practices.*
