@@ -6,7 +6,7 @@ A feature-rich, full-stack blog application built with Python and the Flask web 
 The application is deployed and available at:
 [http://13.62.18.132/home](http://13.62.18.132/home)
 
-![alt text]("https://github.com/user-attachments/assets/01e47ae9-f462-4d22-af96-8db3d64f7560" />"website)
+![alt text](https://github.com/user-attachments/assets/01e47ae9-f462-4d22-af96-8db3d64f7560 "website")
 
 ## ✨ Key Features
 - **User Authentication:** Secure registration, login, and logout functionality using Flask-Login and Bcrypt for password hashing.
